@@ -17,7 +17,19 @@ app.post("/", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.render("ajax4");
+    console.log(req.headers);
+    let data = {
+        content: "Lorem Ipsum"
+    }
+    res.send(data);
+})
+
+app.get("/get", (req, res) => {
+    res.render("ajaxGet");
+});
+
+app.get("/post", (req, res) => {
+    res.render("ajaxPost");
 })
 
 app.get("*", (req, res) => {

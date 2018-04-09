@@ -7,9 +7,15 @@
     <title>Ajax 1 - Text File</title>
 </head>
 <body>
-    <p>Hey</p>
-    <button id="button">Get Text File</button>
+    <h1>Making a get request using ajax</h1>
+    <button id="button">Do a get request without loading the whole page</button>
     <p id="message"></p>
+
+    <h1>Making a get request using a form</h1>
+    <form action="/" method="get">
+        <input type="text" name="text" id="text" value="This is a form" disabled>
+        <input type="submit" value="Make a get request using form">
+    </form>
 
     <script>
         //Create event Listener
@@ -20,12 +26,14 @@
             console.log("ready State = " + xhr.readyState);
             console.log(xhr);
             //open -> type, uer/file, asyc
-            xhr.open("GET", "/getfile", true);
+
+            //i've not added text to the query string
+            xhr.open("GET", "/", true);
+
             xhr.onload = function(){
                 if(this.status == 200){
-                    //let message = JSON.parse(this.responseText);
-                   let message = this.responseText;
-                    document.getElementById("message").innerText = message;
+                    let data = this.responseText;
+                    document.getElementById("message").innerText = `Data recived from server is ${data}`;
                 }
             }
 
