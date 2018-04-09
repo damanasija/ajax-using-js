@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Thisinput sends a post request to node server without reloading the page</h1>
+    <input type="text" name="name" id="name">
+    <button id="button">Post Name</button>
+    <p id="message"></p>
+    <h1>This is a form post request</h1>
+    <form action="#" method="post">
+        <input type="text" name="name" id="nm">
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        document.getElementById("button").addEventListener('click', postName);
+
+        function postName() {
+            console.log(`clicked`);
+            let user = {
+                name: document.getElementById("name").value
+            }
+            let myJsonString = JSON.stringify(user);
+            console.log(myJsonString);
+            xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "/", true);
+            xhr.setRequestHeader("Content-type", "application/json");
+
+            xhr.onload = function () {
+                console.log(`called`);
+                if (this.status == 200) {
+                    document.getElementById("message").innerText = this.responseText;
+                    console.log(this.responseText);
+                }
+                else
+                    console.log(`error = ${this.status}`);
+            }
+            xhr.send(myJsonString);
+
+        }
+    </script>
+
+</body>
+
+</html>

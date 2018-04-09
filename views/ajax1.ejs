@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax 1 - Text File</title>
+</head>
+<body>
+    <p>Hey</p>
+    <button id="button">Get Text File</button>
+    <p id="message"></p>
+
+    <script>
+        //Create event Listener
+        loadText = () => {
+            console.log(`button CLicked`);
+            // Create the CHR OBJECT
+            let xhr = new XMLHttpRequest();
+            console.log("ready State = " + xhr.readyState);
+            console.log(xhr);
+            //open -> type, uer/file, asyc
+            xhr.open("GET", "/getfile", true);
+            xhr.onload = function(){
+                if(this.status == 200){
+                    //let message = JSON.parse(this.responseText);
+                   let message = this.responseText;
+                    document.getElementById("message").innerText = message;
+                }
+            }
+
+            xhr.onerror = function(){
+                document.getElementById("message").innerText = "Error Occured...";
+            }
+            //sends request
+            xhr.send();
+        }
+        document.getElementById("button").addEventListener('click', loadText);
+    </script>
+</body>
+</html>
