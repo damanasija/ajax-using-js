@@ -9,4 +9,5 @@ This makes get and post requests to the Node server asynchronously as well as us
 
 1) Type `npm install` by opening terminal in the directory.
 2) run app by `node app.js`.
-
+3) to go to get requests page. got to `http://localhost:3000/get`
+4) to go to post requests page. got to `http://localhost:3000/post`
